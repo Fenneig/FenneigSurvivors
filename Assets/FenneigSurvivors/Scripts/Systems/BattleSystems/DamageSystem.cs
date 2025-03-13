@@ -1,7 +1,7 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components.BattleComponents;
+﻿using FenneigSurvivors.Scripts.Components.BattleComponents;
 using Leopotam.Ecs;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.BattleSystems
+namespace FenneigSurvivors.Scripts.Systems.BattleSystems
 {
     public class DamageSystem : IEcsRunSystem
     {

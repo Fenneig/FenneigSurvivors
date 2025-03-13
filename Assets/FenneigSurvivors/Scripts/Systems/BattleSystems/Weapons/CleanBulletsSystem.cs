@@ -1,9 +1,9 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components.BattleComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Objects;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Spawners.Pools;
+﻿using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Objects;
+using FenneigSurvivors.Scripts.Spawners.Pools;
 using Leopotam.Ecs;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.BattleSystems.Weapons
+namespace FenneigSurvivors.Scripts.Systems.BattleSystems.Weapons
 {
     public class CleanBulletsSystem : IEcsRunSystem
     {

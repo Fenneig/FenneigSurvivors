@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.DI
+namespace FenneigSurvivors.Scripts.DI
 {
     public class ConfigInstaller : MonoInstaller
     {

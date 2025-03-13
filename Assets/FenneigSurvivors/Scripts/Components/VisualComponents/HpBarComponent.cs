@@ -1,6 +1,6 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Visual;
+﻿using FenneigSurvivors.Scripts.Visual;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Components.VisualComponents
+namespace FenneigSurvivors.Scripts.Components.VisualComponents
 {
     public struct HpBarComponent
     {

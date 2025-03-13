@@ -1,22 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Spawners.Pools
+namespace FenneigSurvivors.Scripts.Spawners.Pools
 {
     [Serializable]
     public class AbstractPool<T> : MonoBehaviour where T : MonoBehaviour
     {
         [SerializeField] private T _prefab;
         [SerializeField] private int _initialCount;
-        
+        [Inject] private DiContainer _container;
+
         private Queue<T> _pool = new Queue<T>();
 
-        private void Awake()
+        [Inject]
+        private void Construct(DiContainer diContainer)
+        {
+            _container = diContainer;
+            InitializePool();
+        }
+
+        private void InitializePool()
         {
             for (int i = 0; i < _initialCount; i++)
             {
-                var instance = Instantiate(_prefab, transform);
+                T instance = _container.InstantiatePrefabForComponent<T>(_prefab);
                 instance.gameObject.SetActive(false);
                 _pool.Enqueue(instance);
             }
@@ -32,7 +41,7 @@ namespace FenneigSurvivors.FenneigSurvivors.Scripts.Spawners.Pools
                 return instance;
             }
 
-            instance = Instantiate(_prefab, transform);
+            instance = _container.InstantiatePrefabForComponent<T>(_prefab);
             return instance;
         }
         

@@ -1,8 +1,8 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components;
+﻿using FenneigSurvivors.Scripts.Components;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.CommonSystems
+namespace FenneigSurvivors.Scripts.Systems.CommonSystems
 {
     public class MoveSystem : IEcsRunSystem
     {

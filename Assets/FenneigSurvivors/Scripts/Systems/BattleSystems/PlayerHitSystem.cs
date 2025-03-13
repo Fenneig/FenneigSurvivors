@@ -1,8 +1,8 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components.BattleComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.PlayerComponents;
+﻿using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Components.PlayerComponents;
 using Leopotam.Ecs;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.BattleSystems
+namespace FenneigSurvivors.Scripts.Systems.BattleSystems
 {
     public class PlayerHitSystem : IEcsRunSystem
     {

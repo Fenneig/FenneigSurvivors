@@ -1,8 +1,8 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components.BattleComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.VisualComponents;
+﻿using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Components.VisualComponents;
 using Leopotam.Ecs;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.CommonSystems
+namespace FenneigSurvivors.Scripts.Systems.CommonSystems
 {
     public class UpdateHpBarsSystems : IEcsRunSystem
     {

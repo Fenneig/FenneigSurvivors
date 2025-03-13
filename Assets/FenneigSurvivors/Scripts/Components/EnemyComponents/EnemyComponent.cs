@@ -1,6 +1,6 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Objects;
+﻿using FenneigSurvivors.Scripts.Objects;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Components.EnemyComponents
+namespace FenneigSurvivors.Scripts.Components.EnemyComponents
 {
     public struct EnemyComponent
     {

@@ -1,9 +1,9 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.EnemyComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.PlayerComponents;
+﻿using FenneigSurvivors.Scripts.Components;
+using FenneigSurvivors.Scripts.Components.EnemyComponents;
+using FenneigSurvivors.Scripts.Components.PlayerComponents;
 using Leopotam.Ecs;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.EnemiesSystems
+namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
 {
     public class MoveTowardPlayerSystem : IEcsRunSystem
     {

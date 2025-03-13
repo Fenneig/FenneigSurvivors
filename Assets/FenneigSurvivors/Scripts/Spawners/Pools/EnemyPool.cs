@@ -1,6 +1,6 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Objects;
+﻿using FenneigSurvivors.Scripts.Objects;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Spawners.Pools
+namespace FenneigSurvivors.Scripts.Spawners.Pools
 {
     public class EnemyPool : AbstractPool<Enemy>
     {

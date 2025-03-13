@@ -1,6 +1,6 @@
 ﻿using Zenject;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Input
+namespace FenneigSurvivors.Scripts.Input
 {
     public class InputInstaller : MonoInstaller
     {

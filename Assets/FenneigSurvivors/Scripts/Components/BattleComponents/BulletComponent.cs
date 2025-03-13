@@ -1,6 +1,6 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Objects;
+﻿using FenneigSurvivors.Scripts.Objects;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Components.BattleComponents
+namespace FenneigSurvivors.Scripts.Components.BattleComponents
 {
     public struct BulletComponent
     {

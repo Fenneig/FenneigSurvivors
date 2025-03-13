@@ -1,7 +1,7 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Visual;
+﻿using FenneigSurvivors.Scripts.Visual;
 using UnityEngine;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Objects
+namespace FenneigSurvivors.Scripts.Objects
 {
     public class Enemy : MonoBehaviour
     {

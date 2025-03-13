@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Objects
+namespace FenneigSurvivors.Scripts.Objects
 {
     public class Bullet : MonoBehaviour
     {

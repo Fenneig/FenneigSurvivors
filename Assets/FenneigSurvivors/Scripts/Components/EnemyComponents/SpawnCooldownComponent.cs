@@ -1,4 +1,4 @@
-﻿namespace FenneigSurvivors.FenneigSurvivors.Scripts.Components.EnemyComponents
+﻿namespace FenneigSurvivors.Scripts.Components.EnemyComponents
 {
     public struct SpawnCooldownComponent
     {

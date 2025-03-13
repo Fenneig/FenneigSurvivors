@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Visual
+namespace FenneigSurvivors.Scripts.Visual
 {
     public class HpBarView : MonoBehaviour
     {

@@ -1,11 +1,11 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.BattleComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.EnemyComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.PlayerComponents;
+﻿using FenneigSurvivors.Scripts.Components;
+using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Components.EnemyComponents;
+using FenneigSurvivors.Scripts.Components.PlayerComponents;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.BattleSystems
+namespace FenneigSurvivors.Scripts.Systems.BattleSystems
 {
     public class PlayerAutoAttackSystem : IEcsRunSystem
     {

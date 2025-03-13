@@ -1,10 +1,10 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components.BattleComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.EnemyComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Objects;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Spawners.Pools;
+﻿using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Components.EnemyComponents;
+using FenneigSurvivors.Scripts.Objects;
+using FenneigSurvivors.Scripts.Spawners.Pools;
 using Leopotam.Ecs;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.EnemiesSystems
+namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
 {
     public class EnemyDeathSystem : IEcsRunSystem
     {

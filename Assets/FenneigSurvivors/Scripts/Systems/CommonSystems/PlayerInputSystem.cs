@@ -1,11 +1,11 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.PlayerComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Input;
+﻿using FenneigSurvivors.Scripts.Components;
+using FenneigSurvivors.Scripts.Components.PlayerComponents;
+using FenneigSurvivors.Scripts.Input;
 using Leopotam.Ecs;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.CommonSystems
+namespace FenneigSurvivors.Scripts.Systems.CommonSystems
 {
     public class PlayerInputSystem : IEcsRunSystem
     {

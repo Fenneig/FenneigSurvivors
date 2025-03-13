@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Input
+namespace FenneigSurvivors.Scripts.Input
 {
 
     public class InputService : IInputService

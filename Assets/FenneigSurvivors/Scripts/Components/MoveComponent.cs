@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Components
+namespace FenneigSurvivors.Scripts.Components
 {
     public struct MoveComponent
     {

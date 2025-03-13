@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts
+namespace FenneigSurvivors.Scripts
 {
     [CreateAssetMenu(fileName = "Config", menuName = "FenneigSurvivors/Config")]
     public class Config : ScriptableObject

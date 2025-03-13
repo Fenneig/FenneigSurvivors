@@ -620,8 +620,9 @@ GameObject:
   - component: {fileID: 1172797424}
   - component: {fileID: 1172797423}
   - component: {fileID: 1172797426}
-  - component: {fileID: 1172797425}
   - component: {fileID: 1172797427}
+  - component: {fileID: 1172797428}
+  - component: {fileID: 1172797425}
   m_Layer: 0
   m_Name: GameStartup
   m_TagString: Untagged
@@ -677,6 +678,7 @@ MonoBehaviour:
   _playerSpawner: {fileID: 1172797423}
   _bulletSpawner: {fileID: 1172797426}
   _enemySpawner: {fileID: 1172797427}
+  _xpOrbSpawner: {fileID: 1172797428}
 --- !u!114 &1172797426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -706,6 +708,18 @@ MonoBehaviour:
   - {fileID: 1763091524}
   - {fileID: 912291145}
   - {fileID: 360672859}
+--- !u!114 &1172797428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172797422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fe7bdff0e7473f8501b6fdfb54e3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1276756336
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,6 +973,7 @@ GameObject:
   - component: {fileID: 1837389951}
   - component: {fileID: 1837389953}
   - component: {fileID: 1837389952}
+  - component: {fileID: 1837389955}
   - component: {fileID: 1837389954}
   m_Layer: 0
   m_Name: PoolsInstaller
@@ -1024,6 +1039,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPool: {fileID: 1837389953}
   _enemyPool: {fileID: 1837389952}
+  _xpOrbsPool: {fileID: 1837389955}
+--- !u!114 &1837389955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837389950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6723f0dc2f9b49f9ba23a469bf05649e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 2980604698304146341, guid: ae5cbdfcae890de479758dcac53baf08, type: 3}
+  _initialCount: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

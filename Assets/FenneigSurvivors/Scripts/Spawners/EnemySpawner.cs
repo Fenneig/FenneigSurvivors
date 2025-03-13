@@ -1,48 +1,35 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.BattleComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.EnemyComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Components.VisualComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Objects;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Spawners.Pools;
+﻿using FenneigSurvivors.Scripts.Components;
+using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Components.EnemyComponents;
+using FenneigSurvivors.Scripts.Components.VisualComponents;
+using FenneigSurvivors.Scripts.Objects;
 using Leopotam.Ecs;
 using UnityEngine;
-using Zenject;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Spawners
+namespace FenneigSurvivors.Scripts.Spawners
 {
-    public class EnemySpawner : MonoBehaviour
+    public class EnemySpawner : AbstractSpawner<Enemy>
     {
         [SerializeField] private Transform[] _spawnPoints;
-
-        [Inject] private Config _config;
-
-        private EcsWorld _world;
-        private EnemyPool _enemyPool;
-
-        public void Init(EcsWorld ecsWorld, EnemyPool enemyPool)
-        {
-            _world = ecsWorld;
-            _enemyPool = enemyPool;
-        }
-
+        
         public void SpawnEnemy()
         {
-            CreateEnemyEntity();
+            Create();
             SetupTimer();
         }
 
         private void SetupTimer()
         {
-            var cooldownEntity = _world.NewEntity();
+            var cooldownEntity = World.NewEntity();
 
-            cooldownEntity.Replace(new SpawnCooldownComponent { RemainTime = _config.SpawnCooldownDuration });
+            cooldownEntity.Replace(new SpawnCooldownComponent { RemainTime = Config.SpawnCooldownDuration });
         }
 
-        private void CreateEnemyEntity()
+        public override void Create()
         {
-            var entity = _world.NewEntity();
+            var entity = World.NewEntity();
 
-            Enemy enemy = _enemyPool.Get();
+            Enemy enemy = Pool.Get();
             enemy.ResetHitState();
 
             SetupEnemy(entity, enemy);
@@ -65,12 +52,12 @@ namespace FenneigSurvivors.FenneigSurvivors.Scripts.Spawners
 
         private void SetupMovement(EcsEntity entity)
         {
-            entity.Replace(new MoveComponent { Speed = _config.EnemySpeed });
+            entity.Replace(new MoveComponent { Speed = Config.EnemySpeed });
         }
 
         private void SetupHealth(EcsEntity entity, Enemy enemy)
         {
-            entity.Replace(new HealthComponent { MaxHealth = _config.EnemyHealth, CurrentHealth = _config.EnemyHealth });
+            entity.Replace(new HealthComponent { MaxHealth = Config.EnemyHealth, CurrentHealth = Config.EnemyHealth });
             entity.Replace(new HpBarComponent { View = enemy.HpBarView });
         }
     }

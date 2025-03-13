@@ -1,8 +1,8 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components.EnemyComponents;
-using FenneigSurvivors.FenneigSurvivors.Scripts.Spawners;
+﻿using FenneigSurvivors.Scripts.Components.EnemyComponents;
+using FenneigSurvivors.Scripts.Spawners;
 using Leopotam.Ecs;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.EnemiesSystems
+namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
 {
     public class EnemySpawnSystem : IEcsRunSystem
     {

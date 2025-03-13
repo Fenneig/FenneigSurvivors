@@ -1,8 +1,8 @@
-﻿using FenneigSurvivors.FenneigSurvivors.Scripts.Components.EnemyComponents;
+﻿using FenneigSurvivors.Scripts.Components.EnemyComponents;
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace FenneigSurvivors.FenneigSurvivors.Scripts.Systems.EnemiesSystems
+namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
 {
     public class SpawnCooldownSystem : IEcsRunSystem
     {
