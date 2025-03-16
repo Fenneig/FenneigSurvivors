@@ -33,7 +33,7 @@ namespace FenneigSurvivors.Scripts.Spawners
             SetupMovement(entity);
             SetupHealth(entity, player);
             SetupCamera(player);
-            SetupExperience(entity);
+            SetupExperience(entity, player);
         }
 
         private void SetupTransform(EcsEntity entity, Player player)
@@ -53,9 +53,11 @@ namespace FenneigSurvivors.Scripts.Spawners
             entity.Replace(new HpBarComponent { View = player.HpBarView });
         }
 
-        private void SetupExperience(EcsEntity entity)
+        private void SetupExperience(EcsEntity entity, Player player)
         {
             entity.Replace(new ExperienceComponent { CurrentXp = 0, RequiredXp = 10 });
+
+            entity.Replace(new XpBarComponent { XpView = player.XpView});
         }
 
         private void SetupCamera(Player player)

@@ -1,4 +1,5 @@
-﻿using FenneigSurvivors.Scripts.Input;
+﻿using FenneigSurvivors.Scripts.Components;
+using FenneigSurvivors.Scripts.Input;
 using FenneigSurvivors.Scripts.Spawners;
 using FenneigSurvivors.Scripts.Spawners.Pools;
 using FenneigSurvivors.Scripts.Systems.BattleSystems;
@@ -61,8 +62,8 @@ namespace FenneigSurvivors.Scripts
                 .Add(new AttractSystem())
                 .Add(new CollectLightItemsSystem())
                 .Add(new CollectItemsSystem())
-                .Add(new ApplyExpOrbEffect())
-                .Add(new LevelUpSystem())
+                .Add(new ApplyExpOrbEffectSystem())
+                .Add(new LevelUpSystem(_world))
                 
                 .Add(new CleanUsedOrbsSystem(_xpOrbPool))
                 .Add(new CleanBulletsSystem(_bulletPool))
@@ -73,7 +74,8 @@ namespace FenneigSurvivors.Scripts
                 .Add(new SpawnCooldownSystem())
                 .Add(new BulletLifeTimeCounterSystem())
                 .Add(new InvulnerableSystem())
-                .Add(new UpdateHpBarsSystems())
+                .Add(new UpdateHpBarsSystem())
+                .Add(new UpdateXpViewSystem())
                 .Init();
         }
 

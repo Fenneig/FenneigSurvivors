@@ -1,4 +1,5 @@
-﻿using FenneigSurvivors.Scripts.Components.EnemyComponents;
+﻿using FenneigSurvivors.Scripts.Components;
+using FenneigSurvivors.Scripts.Components.EnemyComponents;
 using FenneigSurvivors.Scripts.Spawners;
 using Leopotam.Ecs;
 
@@ -8,6 +9,7 @@ namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
     {
         private readonly EcsFilter<EnemyComponent> _filter = null;
         private readonly EcsFilter<SpawnCooldownComponent> _spawnCooldownFilter = null;
+        private readonly EcsFilter<PauseComponent> _pauseFilter = null;
 
         private EnemySpawner _enemySpawner;
         private Config _config;
@@ -20,6 +22,9 @@ namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
 
         public void Run()
         {
+            if (_pauseFilter.IsEmpty() == false)
+                return;
+            
             if (!_spawnCooldownFilter.IsEmpty())
                 return;
             

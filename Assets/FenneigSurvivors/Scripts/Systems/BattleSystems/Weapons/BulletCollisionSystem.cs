@@ -10,9 +10,13 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems.Weapons
     {
         private readonly EcsFilter<BulletComponent, TransformComponent> _bulletFilter = null;
         private readonly EcsFilter<EnemyComponent, TransformComponent, HealthComponent> _enemyFilter = null;
+        private readonly EcsFilter<PauseComponent> _pauseFilter = null;
 
         public void Run()
         {
+            if (_pauseFilter.IsEmpty() == false)
+                return;
+            
             foreach (int bullet in _bulletFilter)
             {
                 ref var bulletEntity = ref _bulletFilter.GetEntity(bullet);

@@ -4,7 +4,7 @@ using Leopotam.Ecs;
 
 namespace FenneigSurvivors.Scripts.Systems.CommonSystems
 {
-    public class UpdateHpBarsSystems : IEcsRunSystem
+    public class UpdateHpBarsSystem : IEcsRunSystem
     {
         private EcsFilter<HealthComponent, HpBarComponent> _filter = null;
 

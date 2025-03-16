@@ -10,9 +10,13 @@ namespace FenneigSurvivors.Scripts.Systems.LevelSystems
     {
         private EcsFilter<PlayerComponent, TransformComponent> _playerFilter = null;
         private EcsFilter<PickUpComponent, TransformComponent> _pickUpFilter = null;
-
+        private EcsFilter<PauseComponent> _pauseFilter = null;
+        
         public void Run()
         {
+            if (_pauseFilter.IsEmpty() == false)
+                return;
+            
             foreach (int i in _playerFilter)
             {
                 ref var playerTransform = ref _playerFilter.Get2(i);

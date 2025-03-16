@@ -1,4 +1,5 @@
-﻿using FenneigSurvivors.Scripts.Components.BattleComponents;
+﻿using FenneigSurvivors.Scripts.Components;
+using FenneigSurvivors.Scripts.Components.BattleComponents;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems
     public class HitEffectTimerSystem : IEcsRunSystem
     {
         private EcsFilter<HitEffectTimerComponent> _filter;
+        private EcsFilter<PauseComponent> _pauseFilter;
 
         private Config _config;
 
@@ -17,6 +19,9 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems
         
         public void Run()
         {
+            if (_pauseFilter.IsEmpty() == false)
+                return;
+
             foreach (int i in _filter)
             {
                 ref var entity = ref _filter.GetEntity(i);

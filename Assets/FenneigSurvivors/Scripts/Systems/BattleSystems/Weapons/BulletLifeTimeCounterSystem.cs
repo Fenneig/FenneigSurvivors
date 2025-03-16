@@ -7,9 +7,13 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems.Weapons
     public class BulletLifeTimeCounterSystem : IEcsRunSystem
     {
         private EcsFilter<BulletLifeTimeComponent>.Exclude<DestroyBulletComponent> _filter;
+        private EcsFilter<DestroyBulletComponent> _pauseFilter;
 
         public void Run()
         {
+            if (_pauseFilter.IsEmpty() == false)
+                return;
+
             foreach (int i in _filter)
             {
                 ref var entity = ref _filter.GetEntity(i);

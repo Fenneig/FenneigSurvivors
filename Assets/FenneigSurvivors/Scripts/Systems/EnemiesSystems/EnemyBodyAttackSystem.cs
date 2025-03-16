@@ -11,6 +11,7 @@ namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
     {
         private EcsFilter<EnemyComponent, TransformComponent> _enemyFilter;
         private EcsFilter<PlayerComponent, TransformComponent> _playerFilter;
+        private EcsFilter<PauseComponent> _pauseFilter;
 
         private Config _config;
 
@@ -21,6 +22,9 @@ namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
 
         public void Run()
         {
+            if (_pauseFilter.IsEmpty() == false)
+                return;
+            
             foreach (int i in _playerFilter)
             {
                 ref var player = ref _playerFilter.GetEntity(i);

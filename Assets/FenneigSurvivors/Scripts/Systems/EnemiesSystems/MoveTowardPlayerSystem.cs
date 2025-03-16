@@ -9,9 +9,13 @@ namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
     {
         private EcsFilter<EnemyComponent, TransformComponent, MoveComponent> _enemyFilter = null;
         private EcsFilter<PlayerComponent, TransformComponent> _playerFilter = null;
+        private EcsFilter<PauseComponent> _pauseFilter = null;
 
         public void Run()
         {
+            if (_pauseFilter.IsEmpty() == false)
+                return;
+            
             foreach (int enemy in _enemyFilter)
             {
                 foreach (int player in _playerFilter)

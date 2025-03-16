@@ -1,0 +1,18 @@
+{
+    "Recipes": [
+        {
+            "_id": 1000,
+            "Result": {
+                "instanceID": 26776
+            },
+            "Ingredients": [
+                {
+                    "Item": {
+                        "instanceID": -5474
+                    },
+                    "Count": 3
+                }
+            ]
+        }
+    ]
+}

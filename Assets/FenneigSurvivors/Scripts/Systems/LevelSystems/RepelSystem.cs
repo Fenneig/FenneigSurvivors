@@ -7,10 +7,14 @@ namespace FenneigSurvivors.Scripts.Systems.LevelSystems
 {
     public class RepelSystem : IEcsRunSystem
     {
-        private EcsFilter<PickUpRepelComponent, TransformComponent> _pickUpFilter = null;
+        private readonly EcsFilter<PickUpRepelComponent, TransformComponent> _pickUpFilter = null;
+        private readonly EcsFilter<PauseComponent> _pauseFilter = null;
         
         public void Run()
         {
+            if (_pauseFilter.IsEmpty() == false)
+                return;
+            
             foreach (int pickUps in _pickUpFilter)
             {
                 ref var pickUpEntity = ref _pickUpFilter.GetEntity(pickUps);

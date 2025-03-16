@@ -1,12 +1,19 @@
-﻿using FenneigSurvivors.Scripts.Components.LevelComponents;
+﻿using FenneigSurvivors.Scripts.Components;
+using FenneigSurvivors.Scripts.Components.LevelComponents;
 using Leopotam.Ecs;
-using UnityEngine;
 
 namespace FenneigSurvivors.Scripts.Systems.LevelSystems
 {
     public class LevelUpSystem : IEcsRunSystem
     {
         private readonly EcsFilter<ExperienceComponent> _experience;
+
+        private readonly EcsWorld _ecsWorld;
+        
+        public LevelUpSystem(EcsWorld ecsWorld)
+        {
+            _ecsWorld = ecsWorld;
+        }
 
         public void Run()
         {
@@ -16,7 +23,7 @@ namespace FenneigSurvivors.Scripts.Systems.LevelSystems
                 if (experience.CurrentXp >= experience.RequiredXp)
                 {
                     experience.CurrentXp -= experience.RequiredXp;
-                    Debug.Log("Player level up!");
+                    var pause = _ecsWorld.NewEntity().Get<PauseComponent>();
                 }
             }
         }

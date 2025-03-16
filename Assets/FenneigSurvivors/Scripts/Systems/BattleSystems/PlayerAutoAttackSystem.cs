@@ -12,6 +12,7 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems
         private readonly EcsFilter<PlayerComponent, TransformComponent>.Exclude<AutoAttackComponent> _playerFilter = null;
         private readonly EcsFilter<EnemyComponent, TransformComponent> _enemyFilter = null;
         private readonly EcsFilter<AutoAttackComponent, PlayerComponent> _autoAttackFilter = null;
+        private readonly EcsFilter<PauseComponent> _pauseFilter = null;
         private readonly EcsWorld _ecsWorld;
         private readonly Config _config;
 
@@ -23,6 +24,9 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems
 
         public void Run()
         {
+            if (_pauseFilter.IsEmpty() == false)
+                return;
+            
             foreach (int i in _playerFilter)
             {
                 ref EcsEntity playerEntity = ref _playerFilter.GetEntity(i);
