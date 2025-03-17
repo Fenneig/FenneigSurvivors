@@ -1,5 +1,6 @@
 ﻿using FenneigSurvivors.Scripts.Components;
 using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Configs;
 using Leopotam.Ecs;
 using UnityEngine;
 

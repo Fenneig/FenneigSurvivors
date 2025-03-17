@@ -107,3 +107,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config: {fileID: 11400000, guid: ca9ae33990692084bb9d4c77522e044d, type: 2}
+  _bulletConfig: {fileID: 11400000, guid: 63907b761297b1c4087ee6a7ef75e236, type: 2}
+  _enemiesConfig: {fileID: 11400000, guid: 4f186a93fc21c2844ab365fed72f1d70, type: 2}

@@ -1,4 +1,6 @@
 ﻿using FenneigSurvivors.Scripts.Components;
+using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Configs;
 using FenneigSurvivors.Scripts.Input;
 using FenneigSurvivors.Scripts.Spawners;
 using FenneigSurvivors.Scripts.Spawners.Pools;
@@ -22,6 +24,8 @@ namespace FenneigSurvivors.Scripts
 
         [Inject] private IInputService _inputService;
         [Inject] private Config _config;
+        [Inject] private EnemiesConfig _enemiesConfig;
+        [Inject] private BulletConfig _bulletConfig;
         [Inject] private BulletPool _bulletPool;
         [Inject] private EnemyPool _enemyPool;
         [Inject] private XpOrbsPool _xpOrbPool;
@@ -33,6 +37,10 @@ namespace FenneigSurvivors.Scripts
         {
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
+
+            var settingsEntity = _world.NewEntity();
+            settingsEntity.Replace(new DifficultyLevelComponent { CurrentLevel = 0 });
+            settingsEntity.Replace(new BattleTimeComponent { PhaseTime = _enemiesConfig.MeleeEnemyStats[0].PhaseTime });
 
             _playerSpawner.Init(_world);
             _bulletSpawner.Init(_world, _bulletPool);
@@ -46,12 +54,12 @@ namespace FenneigSurvivors.Scripts
                 .Add(new MoveTowardPlayerSystem())
 
                 //.Add(new PlayerAttackSystem(_world))
-                .Add(new PlayerAutoAttackSystem(_world, _config))
-                .Add(new EnemyBodyAttackSystem(_config))
+                .Add(new PlayerAutoAttackSystem(_world, _bulletConfig))
+                .Add(new EnemyBodyAttackSystem(_enemiesConfig))
                 .Add(new BulletCollisionSystem())
 
                 .Add(new BulletSpawnerSystem(_bulletSpawner))
-                .Add(new EnemySpawnSystem(_enemySpawner, _config))
+                .Add(new EnemySpawnSystem(_enemySpawner, _enemiesConfig))
 
                 .Add(new DamageSystem())
                 .Add(new EnemyHitSystem(_config))
@@ -63,19 +71,20 @@ namespace FenneigSurvivors.Scripts
                 .Add(new CollectLightItemsSystem())
                 .Add(new CollectItemsSystem())
                 .Add(new ApplyExpOrbEffectSystem())
-                .Add(new LevelUpSystem(_world))
+                //.Add(new LevelUpSystem(_world))
                 
                 .Add(new CleanUsedOrbsSystem(_xpOrbPool))
                 .Add(new CleanBulletsSystem(_bulletPool))
                 .Add(new EnemyDeathSystem(_enemyPool))
-                .Add(new HitEffectSystem(_config))
+                //.Add(new HitEffectSystem(_config))
 
-                .Add(new HitEffectTimerSystem(_config))
+                //.Add(new HitEffectTimerSystem(_config))
                 .Add(new SpawnCooldownSystem())
                 .Add(new BulletLifeTimeCounterSystem())
                 .Add(new InvulnerableSystem())
                 .Add(new UpdateHpBarsSystem())
                 .Add(new UpdateXpViewSystem())
+                .Add(new DifficultSystem(_enemiesConfig))
                 .Init();
         }
 

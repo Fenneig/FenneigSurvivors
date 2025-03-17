@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8178ae790e0d49c28941443e61e13168, type: 3}
+  m_Name: EnemiesConfig
+  m_EditorClassIdentifier: 
+  MeleeEnemyStats:
+  - PhaseTime: 20
+    EnemyHealth: 50
+    EnemySpeed: 1.5
+    MaxEnemiesOnScene: 20
+    EnemiesSpawnsPerSpawn: 2
+    SpawnCooldownDuration: 3
+    EnemyAttackDamage: 5
+    EnemyAttackDistance: 0.5
+    EnemyMaterial: {fileID: 2100000, guid: 47b09ab5a7d122d4992f9850c1034e87, type: 2}
+  - PhaseTime: 20
+    EnemyHealth: 40
+    EnemySpeed: 2.5
+    MaxEnemiesOnScene: 25
+    EnemiesSpawnsPerSpawn: 3
+    SpawnCooldownDuration: 2.5
+    EnemyAttackDamage: 6
+    EnemyAttackDistance: 0.5
+    EnemyMaterial: {fileID: 2100000, guid: 185ed20f59798c245b3a4b4f19fe81d1, type: 2}
+  - PhaseTime: 20
+    EnemyHealth: 150
+    EnemySpeed: 1
+    MaxEnemiesOnScene: 15
+    EnemiesSpawnsPerSpawn: 1
+    SpawnCooldownDuration: 5
+    EnemyAttackDamage: 10
+    EnemyAttackDistance: 0.5
+    EnemyMaterial: {fileID: 2100000, guid: 44dd713893fb2b941bc0b1ffa5d6d9c5, type: 2}
+  - PhaseTime: 20
+    EnemyHealth: 200
+    EnemySpeed: 2.2
+    MaxEnemiesOnScene: 10
+    EnemiesSpawnsPerSpawn: 2
+    SpawnCooldownDuration: 6
+    EnemyAttackDamage: 15
+    EnemyAttackDistance: 0.5
+    EnemyMaterial: {fileID: 2100000, guid: 443e3816e0d34f4438662d7af5a45d65, type: 2}

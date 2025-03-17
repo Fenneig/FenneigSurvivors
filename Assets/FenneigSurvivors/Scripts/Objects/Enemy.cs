@@ -14,6 +14,11 @@ namespace FenneigSurvivors.Scripts.Objects
             _currentHitState = !_currentHitState;
             _mesh.enabled = _currentHitState;
         }
+
+        public void SetMaterial(Material material)
+        {
+            _mesh.material = material;
+        }
         
         public void ResetHitState()
         {

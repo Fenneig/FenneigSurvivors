@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 943e34096fc54b7f804e1065e11a72ba, type: 3}
-  m_Name: Config
+  m_Script: {fileID: 11500000, guid: 52c48249f2f04dc8b93de93e72f23fae, type: 3}
+  m_Name: BulletConfig
   m_EditorClassIdentifier: 
-  PlayerHealth: 100
-  PlayerSpeed: 5
-  PlayerInvulnerableCooldown: 1
-  HitEffectDuration: 5
-  HitSwitchDuration: 1
+  BulletDamage: 10
+  BulletsSpeed: 10
+  BulletLifeTime: 4
+  PlayerAutoAttackCooldown: 0.5

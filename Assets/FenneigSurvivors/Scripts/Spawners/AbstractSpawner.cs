@@ -7,8 +7,6 @@ namespace FenneigSurvivors.Scripts.Spawners
 {
     public abstract class AbstractSpawner<T> : MonoBehaviour where T : MonoBehaviour
     {
-        [Inject] protected Config Config;
-
         protected EcsWorld World;
         protected AbstractPool<T> Pool;
 

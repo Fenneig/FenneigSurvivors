@@ -2,6 +2,7 @@
 using FenneigSurvivors.Scripts.Components.BattleComponents;
 using FenneigSurvivors.Scripts.Components.EnemyComponents;
 using FenneigSurvivors.Scripts.Components.PlayerComponents;
+using FenneigSurvivors.Scripts.Configs;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -14,9 +15,9 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems
         private readonly EcsFilter<AutoAttackComponent, PlayerComponent> _autoAttackFilter = null;
         private readonly EcsFilter<PauseComponent> _pauseFilter = null;
         private readonly EcsWorld _ecsWorld;
-        private readonly Config _config;
+        private readonly BulletConfig _config;
 
-        public PlayerAutoAttackSystem(EcsWorld ecsWorld, Config config)
+        public PlayerAutoAttackSystem(EcsWorld ecsWorld, BulletConfig config)
         {
             _ecsWorld = ecsWorld;
             _config = config;

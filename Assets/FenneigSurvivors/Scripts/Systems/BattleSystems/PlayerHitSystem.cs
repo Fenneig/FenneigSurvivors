@@ -1,5 +1,6 @@
 ﻿using FenneigSurvivors.Scripts.Components.BattleComponents;
 using FenneigSurvivors.Scripts.Components.PlayerComponents;
+using FenneigSurvivors.Scripts.Configs;
 using Leopotam.Ecs;
 
 namespace FenneigSurvivors.Scripts.Systems.BattleSystems

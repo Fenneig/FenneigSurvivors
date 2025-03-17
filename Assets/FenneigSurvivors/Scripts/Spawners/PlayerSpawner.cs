@@ -4,10 +4,12 @@ using FenneigSurvivors.Scripts.Components.BattleComponents;
 using FenneigSurvivors.Scripts.Components.LevelComponents;
 using FenneigSurvivors.Scripts.Components.PlayerComponents;
 using FenneigSurvivors.Scripts.Components.VisualComponents;
+using FenneigSurvivors.Scripts.Configs;
 using FenneigSurvivors.Scripts.Objects;
 using FenneigSurvivors.Scripts.Spawners.Pools;
 using Leopotam.Ecs;
 using UnityEngine;
+using Zenject;
 
 namespace FenneigSurvivors.Scripts.Spawners
 {
@@ -15,6 +17,7 @@ namespace FenneigSurvivors.Scripts.Spawners
     {
         [SerializeField] private Player _playerPrefab;
         [SerializeField] private CinemachineVirtualCamera _camera;
+        [Inject] private Config _config;
 
         public override void Init(EcsWorld world, AbstractPool<Player> pool = null)
         {
@@ -43,12 +46,12 @@ namespace FenneigSurvivors.Scripts.Spawners
 
         private void SetupMovement(EcsEntity entity)
         {
-            entity.Replace(new MoveComponent { Speed = Config.PlayerSpeed });
+            entity.Replace(new MoveComponent { Speed = _config.PlayerSpeed });
         }
 
         private void SetupHealth(EcsEntity entity, Player player)
         {
-            entity.Replace(new HealthComponent { MaxHealth = Config.PlayerHealth, CurrentHealth = Config.PlayerHealth });
+            entity.Replace(new HealthComponent { MaxHealth = _config.PlayerHealth, CurrentHealth = _config.PlayerHealth });
 
             entity.Replace(new HpBarComponent { View = player.HpBarView });
         }
