@@ -6,30 +6,33 @@ using FenneigSurvivors.Scripts.Components.PlayerComponents;
 using FenneigSurvivors.Scripts.Components.VisualComponents;
 using FenneigSurvivors.Scripts.Configs;
 using FenneigSurvivors.Scripts.Objects;
-using FenneigSurvivors.Scripts.Spawners.Pools;
 using Leopotam.Ecs;
 using UnityEngine;
 using Zenject;
 
 namespace FenneigSurvivors.Scripts.Spawners
 {
-    public class PlayerSpawner : AbstractSpawner<Player>
+    public class PlayerSpawner : MonoBehaviour
     {
         [SerializeField] private Player _playerPrefab;
         [SerializeField] private CinemachineVirtualCamera _camera;
+        
         [Inject] private Config _config;
+        [Inject] private DiContainer _container;
 
-        public override void Init(EcsWorld world, AbstractPool<Player> pool = null)
+        private EcsWorld _world;
+        
+        public void Init(EcsWorld world)
         {
-            base.Init(world, pool);
+            _world = world;
             Create();
         }
 
-        public override void Create()
+        private void Create()
         {
-            var entity = World.NewEntity();
+            var entity = _world.NewEntity();
 
-            Player player = Instantiate(_playerPrefab);
+            Player player = _container.InstantiatePrefab(_playerPrefab).GetComponent<Player>();
             entity.Replace(new PlayerComponent { Player = player });
 
             SetupTransform(entity, player);

@@ -1,11 +1,14 @@
-﻿using FenneigSurvivors.Scripts.Components;
-using FenneigSurvivors.Scripts.Components.BattleComponents;
-using FenneigSurvivors.Scripts.Configs;
+﻿using FenneigSurvivors.Scripts.Configs;
 using FenneigSurvivors.Scripts.Input;
+using FenneigSurvivors.Scripts.Objects.Effects;
 using FenneigSurvivors.Scripts.Spawners;
 using FenneigSurvivors.Scripts.Spawners.Pools;
+using FenneigSurvivors.Scripts.Spawners.Weapons;
+using FenneigSurvivors.Scripts.Systems;
 using FenneigSurvivors.Scripts.Systems.BattleSystems;
 using FenneigSurvivors.Scripts.Systems.BattleSystems.Weapons;
+using FenneigSurvivors.Scripts.Systems.BattleSystems.Weapons.Bullets;
+using FenneigSurvivors.Scripts.Systems.BattleSystems.Weapons.Fireballs;
 using FenneigSurvivors.Scripts.Systems.CommonSystems;
 using FenneigSurvivors.Scripts.Systems.EnemiesSystems;
 using FenneigSurvivors.Scripts.Systems.LevelSystems;
@@ -17,8 +20,10 @@ namespace FenneigSurvivors.Scripts
 {
     public class GameStartup : MonoBehaviour
     {
+        //[SerializeField] private PopupManager _popupManager;
         [SerializeField] private PlayerSpawner _playerSpawner;
         [SerializeField] private BulletSpawner _bulletSpawner;
+        [SerializeField] private FireballSpawner _fireballSpawner;
         [SerializeField] private EnemySpawner _enemySpawner;
         [SerializeField] private XpOrbSpawner _xpOrbSpawner;
 
@@ -26,9 +31,11 @@ namespace FenneigSurvivors.Scripts
         [Inject] private Config _config;
         [Inject] private EnemiesConfig _enemiesConfig;
         [Inject] private BulletConfig _bulletConfig;
-        [Inject] private BulletPool _bulletPool;
+        [Inject] private FireballConfig _fireballConfig;
         [Inject] private EnemyPool _enemyPool;
         [Inject] private XpOrbsPool _xpOrbPool;
+        [Inject] private ProjectilePool _projectilePool;
+        [Inject] private VFXSpawner _vfxSpawner;
 
         private EcsWorld _world;
         private EcsSystems _systems;
@@ -38,34 +45,34 @@ namespace FenneigSurvivors.Scripts
             _world = new EcsWorld();
             _systems = new EcsSystems(_world);
 
-            var settingsEntity = _world.NewEntity();
-            settingsEntity.Replace(new DifficultyLevelComponent { CurrentLevel = 0 });
-            settingsEntity.Replace(new BattleTimeComponent { PhaseTime = _enemiesConfig.MeleeEnemyStats[0].PhaseTime });
-
             _playerSpawner.Init(_world);
-            _bulletSpawner.Init(_world, _bulletPool);
+            _bulletSpawner.Init(_world);
+            _fireballSpawner.Init(_world);
             _enemySpawner.Init(_world, _enemyPool);
             _xpOrbSpawner.Init(_world, _xpOrbPool);
 
             _systems
                 .Add(new PlayerInputSystem(_inputService))
+                .Add(new GameStateSystem(_world, _enemiesConfig))
 
                 .Add(new MoveSystem())
                 .Add(new MoveTowardPlayerSystem())
 
-                //.Add(new PlayerAttackSystem(_world))
-                .Add(new PlayerAutoAttackSystem(_world, _bulletConfig))
-                .Add(new EnemyBodyAttackSystem(_enemiesConfig))
+                .Add(new PlayerAutoAttackSystem())
+                .Add(new EnemyBodyAttackSystem())
                 .Add(new BulletCollisionSystem())
+                .Add(new FireballCollisionSystem())
 
-                .Add(new BulletSpawnerSystem(_bulletSpawner))
-                .Add(new EnemySpawnSystem(_enemySpawner, _enemiesConfig))
+                .Add(new BulletSpawnerSystem())
+                .Add(new FireballSpawnerSystem())
+                .Add(new EnemySpawnSystem())
 
+                .Add(new FireballExplosionSystem())
                 .Add(new DamageSystem())
-                .Add(new EnemyHitSystem(_config))
-                .Add(new PlayerHitSystem(_config))
+                .Add(new EnemyHitSystem())
+                .Add(new PlayerHitSystem())
                 
-                .Add(new XpOrbDropSystem(_xpOrbSpawner))
+                .Add(new XpOrbDropSystem())
                 .Add(new RepelSystem())
                 .Add(new AttractSystem())
                 .Add(new CollectLightItemsSystem())
@@ -73,18 +80,36 @@ namespace FenneigSurvivors.Scripts
                 .Add(new ApplyExpOrbEffectSystem())
                 //.Add(new LevelUpSystem(_world))
                 
-                .Add(new CleanUsedOrbsSystem(_xpOrbPool))
-                .Add(new CleanBulletsSystem(_bulletPool))
-                .Add(new EnemyDeathSystem(_enemyPool))
-                //.Add(new HitEffectSystem(_config))
-
-                //.Add(new HitEffectTimerSystem(_config))
+                .Add(new CleanUsedOrbsSystem())
+                .Add(new CleanBulletsSystem())
+                .Add(new CleanFireballsSystem())
+                .Add(new EnemyDeathSystem())
+                
                 .Add(new SpawnCooldownSystem())
-                .Add(new BulletLifeTimeCounterSystem())
+                .Add(new ProjectilesLifeTimeCounterSystem())
                 .Add(new InvulnerableSystem())
                 .Add(new UpdateHpBarsSystem())
                 .Add(new UpdateXpViewSystem())
-                .Add(new DifficultSystem(_enemiesConfig))
+                .Add(new EndGameSystem())
+                
+                .Inject(_world)
+                
+                .Inject(_bulletSpawner)
+                .Inject(_fireballSpawner)
+                .Inject(_enemySpawner)
+                .Inject(_xpOrbSpawner)
+                .Inject(_vfxSpawner)
+                
+                .Inject(_enemiesConfig)
+                .Inject(_config)
+                .Inject(_bulletConfig)
+                .Inject(_fireballConfig)
+                .Inject(_enemiesConfig)
+                
+                .Inject(_xpOrbPool)
+                .Inject(_projectilePool)
+                .Inject(_enemyPool)
+                
                 .Init();
         }
 

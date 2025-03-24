@@ -16,36 +16,36 @@ MonoBehaviour:
   - PhaseTime: 20
     EnemyHealth: 50
     EnemySpeed: 1.5
-    MaxEnemiesOnScene: 20
-    EnemiesSpawnsPerSpawn: 2
-    SpawnCooldownDuration: 3
+    MaxEnemiesOnScene: 100
+    EnemiesSpawnsPerSpawn: 5
+    SpawnCooldownDuration: 2
     EnemyAttackDamage: 5
     EnemyAttackDistance: 0.5
     EnemyMaterial: {fileID: 2100000, guid: 47b09ab5a7d122d4992f9850c1034e87, type: 2}
   - PhaseTime: 20
     EnemyHealth: 40
     EnemySpeed: 2.5
-    MaxEnemiesOnScene: 25
-    EnemiesSpawnsPerSpawn: 3
-    SpawnCooldownDuration: 2.5
+    MaxEnemiesOnScene: 100
+    EnemiesSpawnsPerSpawn: 8
+    SpawnCooldownDuration: 1.5
     EnemyAttackDamage: 6
     EnemyAttackDistance: 0.5
     EnemyMaterial: {fileID: 2100000, guid: 185ed20f59798c245b3a4b4f19fe81d1, type: 2}
   - PhaseTime: 20
     EnemyHealth: 150
     EnemySpeed: 1
-    MaxEnemiesOnScene: 15
-    EnemiesSpawnsPerSpawn: 1
-    SpawnCooldownDuration: 5
+    MaxEnemiesOnScene: 100
+    EnemiesSpawnsPerSpawn: 3
+    SpawnCooldownDuration: 3
     EnemyAttackDamage: 10
     EnemyAttackDistance: 0.5
     EnemyMaterial: {fileID: 2100000, guid: 44dd713893fb2b941bc0b1ffa5d6d9c5, type: 2}
   - PhaseTime: 20
     EnemyHealth: 200
     EnemySpeed: 2.2
-    MaxEnemiesOnScene: 10
-    EnemiesSpawnsPerSpawn: 2
-    SpawnCooldownDuration: 6
+    MaxEnemiesOnScene: 100
+    EnemiesSpawnsPerSpawn: 5
+    SpawnCooldownDuration: 3
     EnemyAttackDamage: 15
     EnemyAttackDistance: 0.5
     EnemyMaterial: {fileID: 2100000, guid: 443e3816e0d34f4438662d7af5a45d65, type: 2}

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c48249f2f04dc8b93de93e72f23fae, type: 3}
   m_Name: BulletConfig
   m_EditorClassIdentifier: 
-  BulletDamage: 10
-  BulletsSpeed: 10
-  BulletLifeTime: 4
-  PlayerAutoAttackCooldown: 0.5
+  Damage: 10
+  Speed: 20
+  LifeTime: 3
+  AutoAttackCooldown: 0.5
+  Prefab: {fileID: 1559441689807088267, guid: 581305797c6880e418efef6ac9312974, type: 3}
+  StartInitialCount: 20

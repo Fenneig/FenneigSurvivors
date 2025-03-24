@@ -8,12 +8,7 @@ namespace FenneigSurvivors.Scripts.Systems.LevelSystems
     {
         private readonly EcsFilter<DestroyUsedOrbsComponent, XpOrbComponent> _filter;
 
-        private readonly XpOrbsPool _xpOrbPool;
-        
-        public CleanUsedOrbsSystem(XpOrbsPool xpOrbPool)
-        {
-            _xpOrbPool = xpOrbPool;
-        }
+        private XpOrbsPool _xpOrbPool;
 
         public void Run()
         {

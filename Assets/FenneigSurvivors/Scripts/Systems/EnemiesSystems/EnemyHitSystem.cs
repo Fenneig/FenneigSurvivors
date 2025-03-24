@@ -7,14 +7,9 @@ namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
 {
     public class EnemyHitSystem : IEcsRunSystem
     {
-        private EcsFilter<EnemyComponent, HitComponent>.Exclude<HitEffectTimerComponent> _filter = null;
-        private readonly Config _config;
-        
-        public EnemyHitSystem(Config config)
-        {
-            _config = config;
-        }
-        
+        private readonly EcsFilter<EnemyComponent, HitComponent>.Exclude<HitEffectTimerComponent> _filter = null;
+        private Config _config;
+
         public void Run()
         {
             foreach (int i in _filter)

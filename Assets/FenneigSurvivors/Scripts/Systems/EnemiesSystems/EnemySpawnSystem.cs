@@ -12,16 +12,10 @@ namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
         private readonly EcsFilter<EnemyComponent> _filter = null;
         private readonly EcsFilter<SpawnCooldownComponent> _spawnCooldownFilter = null;
         private readonly EcsFilter<PauseComponent> _pauseFilter = null;
-        private readonly EcsFilter<DifficultyLevelComponent> _difficultyLevel = null;
+        private readonly EcsFilter<GameStateComponent> _gameStateFilter = null;
 
         private EnemySpawner _enemySpawner;
         private EnemiesConfig _enemiesConfig;
-
-        public EnemySpawnSystem(EnemySpawner enemySpawner, EnemiesConfig enemiesConfig)
-        {
-            _enemySpawner = enemySpawner;
-            _enemiesConfig = enemiesConfig;
-        }
 
         public void Run()
         {
@@ -31,16 +25,16 @@ namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
             if (!_spawnCooldownFilter.IsEmpty())
                 return;
 
-            foreach (int i in _difficultyLevel)
+            foreach (int i in _gameStateFilter)
             {
-                ref var difficulty = ref _difficultyLevel.Get1(i);
+                ref var state = ref _gameStateFilter.Get1(i);
                 
                 int enemiesOnScene = _filter.GetEntitiesCount();
-                var currentLevelValues = _enemiesConfig.MeleeEnemyStats[difficulty.CurrentLevel];
+                var currentLevelValues = _enemiesConfig.MeleeEnemyStats[state.CurrentWave];
                 if (enemiesOnScene < currentLevelValues.MaxEnemiesOnScene)
                 {
                     for (int j = 0; j < currentLevelValues.EnemiesSpawnsPerSpawn; j++)
-                        _enemySpawner.SpawnEnemy(difficulty.CurrentLevel);
+                        _enemySpawner.SpawnEnemy(state.CurrentWave);
                 }
             }
         }

@@ -7,14 +7,10 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems
 {
     public class PlayerHitSystem : IEcsRunSystem
     {
-        private EcsFilter<PlayerComponent, HitComponent>.Exclude<InvulnerableComponent> _filter = null;
+        private readonly EcsFilter<PlayerComponent, HitComponent>.Exclude<InvulnerableComponent> _filter = null;
         
         private Config _config;
         
-        public PlayerHitSystem(Config config)
-        {
-            _config = config;
-        }
         
         public void Run()
         {

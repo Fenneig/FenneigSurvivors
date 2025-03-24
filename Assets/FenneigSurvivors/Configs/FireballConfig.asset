@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a19567d6734197aa0c52fd3805a2a9, type: 3}
+  m_Name: FireballConfig
+  m_EditorClassIdentifier: 
+  Damage: 40
+  Speed: 10
+  LifeTime: 8
+  AutoAttackCooldown: 5
+  Prefab: {fileID: 2672006382353668711, guid: b27b89fcc8eba4947b678035bda287ef, type: 3}
+  StartInitialCount: 5
+  ExplosionRadius: 6

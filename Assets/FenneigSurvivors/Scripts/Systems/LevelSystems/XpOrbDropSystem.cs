@@ -12,9 +12,7 @@ namespace FenneigSurvivors.Scripts.Systems.LevelSystems
         private EcsFilter<EnemyComponent, TransformComponent, CharacterDieComponent> _filter = null;
 
         private XpOrbSpawner _xpOrbSpawner;
-        
-        public XpOrbDropSystem(XpOrbSpawner xpOrbSpawner) => 
-            _xpOrbSpawner = xpOrbSpawner;
+
 
         public void Run()
         {

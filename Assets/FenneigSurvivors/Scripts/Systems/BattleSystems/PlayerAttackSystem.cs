@@ -1,5 +1,7 @@
 ﻿using FenneigSurvivors.Scripts.Components;
 using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Components.BattleComponents.Weapon;
+using FenneigSurvivors.Scripts.Components.BattleComponents.Weapon.Bullets;
 using FenneigSurvivors.Scripts.Components.EnemyComponents;
 using FenneigSurvivors.Scripts.Components.PlayerComponents;
 using Leopotam.Ecs;

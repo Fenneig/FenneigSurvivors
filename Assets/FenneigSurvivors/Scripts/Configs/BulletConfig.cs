@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using FenneigSurvivors.Scripts.Objects.Weapons;
+using UnityEngine;
 
 namespace FenneigSurvivors.Scripts.Configs
 {
     [CreateAssetMenu(fileName = "BulletConfig", menuName = "Configs/BulletConfig")]
     public class BulletConfig : ScriptableObject
     {
-        [SerializeField] public int BulletDamage;
-        [SerializeField] public float BulletsSpeed;
-        [SerializeField] public float BulletLifeTime;
-        [SerializeField] public float PlayerAutoAttackCooldown;
+        public int Damage;
+        public float Speed;
+        public float LifeTime;
+        public float AutoAttackCooldown;
+        [Header("Pool info")]
+        public Projectile Prefab;
+        public int StartInitialCount;
     }
 }

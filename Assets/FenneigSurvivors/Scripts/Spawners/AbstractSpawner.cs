@@ -1,7 +1,6 @@
 ﻿using FenneigSurvivors.Scripts.Spawners.Pools;
 using Leopotam.Ecs;
 using UnityEngine;
-using Zenject;
 
 namespace FenneigSurvivors.Scripts.Spawners
 {

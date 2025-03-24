@@ -1,8 +1,11 @@
 ﻿using FenneigSurvivors.Scripts.Components;
-using FenneigSurvivors.Scripts.Components.BattleComponents;
+using FenneigSurvivors.Scripts.Components.BattleComponents.Weapon;
+using FenneigSurvivors.Scripts.Components.BattleComponents.Weapon.Bullets;
+using FenneigSurvivors.Scripts.Components.BattleComponents.Weapon.Fireballs;
 using FenneigSurvivors.Scripts.Components.EnemyComponents;
 using FenneigSurvivors.Scripts.Components.PlayerComponents;
 using FenneigSurvivors.Scripts.Configs;
+using FenneigSurvivors.Scripts.Objects.Weapons;
 using Leopotam.Ecs;
 using UnityEngine;
 
@@ -10,18 +13,15 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems
 {
     public class PlayerAutoAttackSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerComponent, TransformComponent>.Exclude<AutoAttackComponent> _playerFilter = null;
+        private readonly EcsFilter<PlayerComponent, TransformComponent> _playerFilter = null;
         private readonly EcsFilter<EnemyComponent, TransformComponent> _enemyFilter = null;
-        private readonly EcsFilter<AutoAttackComponent, PlayerComponent> _autoAttackFilter = null;
         private readonly EcsFilter<PauseComponent> _pauseFilter = null;
-        private readonly EcsWorld _ecsWorld;
-        private readonly BulletConfig _config;
-
-        public PlayerAutoAttackSystem(EcsWorld ecsWorld, BulletConfig config)
-        {
-            _ecsWorld = ecsWorld;
-            _config = config;
-        }
+        
+        private readonly EcsFilter<BulletAutoAttackComponent, PlayerComponent> _bulletsCooldownFilter = null;
+        private readonly EcsFilter<FireballAutoAttackComponent, PlayerComponent> _fireballsCooldownFilter = null;
+        private EcsWorld _ecsWorld;
+        private BulletConfig _bulletConfig;
+        private FireballConfig _fireballConfig;
 
         public void Run()
         {
@@ -31,47 +31,46 @@ namespace FenneigSurvivors.Scripts.Systems.BattleSystems
             foreach (int i in _playerFilter)
             {
                 ref EcsEntity playerEntity = ref _playerFilter.GetEntity(i);
+                ref Transform playerTransform = ref _playerFilter.Get2(i).Value;
                 
-                CreateBulletRequest(playerEntity);
+                if (_bulletsCooldownFilter.IsEmpty())
+                    HandleAutoAttack<BulletAutoAttackComponent, BulletInitializeComponent>(playerEntity, playerTransform, _bulletConfig.AutoAttackCooldown);
+                
+                if (_fireballsCooldownFilter.IsEmpty())
+                    HandleAutoAttack<FireballAutoAttackComponent, FireballInitializeComponent>(playerEntity, playerTransform, _fireballConfig.AutoAttackCooldown);
             }
-
-            foreach (int i in _autoAttackFilter)
-            {
-                CountAutoAttackCooldown(_autoAttackFilter.GetEntity(i));
-            }
-        }
-        private void CountAutoAttackCooldown(EcsEntity playerEntity)
-        {
-            foreach (int j in _autoAttackFilter)
-            {
-                ref var autoAttackTimer = ref _autoAttackFilter.Get1(j);
-                autoAttackTimer.AttackCooldown -= Time.deltaTime;
-
-                if (autoAttackTimer.AttackCooldown <= 0)
-                    playerEntity.Del<AutoAttackComponent>();
-            }
-        }
-
-        private void CreateBulletRequest(EcsEntity playerEntity)
-        {
-            if (_enemyFilter.IsEmpty())
-                return;
             
-            ref var playerTransform = ref playerEntity.Get<TransformComponent>().Value;
-            var bulletRequest = _ecsWorld.NewEntity();
-
-            SetBulletInitValues(bulletRequest, playerTransform);
-
-            playerEntity.Replace(new AutoAttackComponent { AttackCooldown = _config.PlayerAutoAttackCooldown });
+            CountCooldowns(_bulletsCooldownFilter);
+            CountCooldowns(_fireballsCooldownFilter);
         }
-
-        private void SetBulletInitValues(EcsEntity bulletRequest, Transform playerTransform)
+        
+        private void HandleAutoAttack<T, TInit>(EcsEntity player, Transform playerTransform, float cooldown)
+            where T : struct, IAttackCooldownComponent
+            where TInit : struct, IInitializeComponent
         {
-            ref var bulletInitialize = ref bulletRequest.Get<BulletInitializeComponent>();
-            bulletInitialize.Position = playerTransform.position;
-            bulletInitialize.Direction = CalculateClosestEnemyDirection(playerTransform.position);
+            if (_enemyFilter.IsEmpty()) 
+                return;
+
+            var projectileRequest = _ecsWorld.NewEntity();
+            ref var init = ref projectileRequest.Get<TInit>();
+            init.Position = playerTransform.position;
+            init.Direction = CalculateClosestEnemyDirection(playerTransform.position);
+
+            player.Replace(new T { AttackCooldown = cooldown });
         }
 
+        private void CountCooldowns<T>(EcsFilter<T, PlayerComponent> filter)
+            where T : struct, IAttackCooldownComponent
+        {
+            foreach (int i in filter)
+            {
+                ref var cooldown = ref filter.Get1(i);
+                cooldown.AttackCooldown -= Time.deltaTime;
+                if (cooldown.AttackCooldown <= 0)
+                    filter.GetEntity(i).Del<T>();
+            }
+        }
+        
         private Vector3 CalculateClosestEnemyDirection(Vector3 position)
         {
             Vector3 closestEnemyPosition = Vector3.zero;

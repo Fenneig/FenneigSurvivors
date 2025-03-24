@@ -8,14 +8,10 @@ namespace FenneigSurvivors.Scripts.Systems.EnemiesSystems
 {
     public class EnemyDeathSystem : IEcsRunSystem
     {
-        private EcsFilter<EnemyComponent, CharacterDieComponent> _enemies;
+        private readonly EcsFilter<EnemyComponent, CharacterDieComponent> _enemies;
 
         private EnemyPool _enemyPool;
 
-        public EnemyDeathSystem(EnemyPool enemyPool)
-        {
-            _enemyPool = enemyPool;
-        }
 
         public void Run()
         {
